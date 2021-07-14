@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import javax.validation.constraints.NotEmpty;
+
 import org.hibernate.validator.constraints.br.CPF;
-import br.com.fabio.osfabio.domain.Tecnico;
+
+import br.com.fabio.osfabio.domain.Cliente;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class TecnicoDTO implements Serializable {
+public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
@@ -24,17 +28,17 @@ public class TecnicoDTO implements Serializable {
 	@NotEmpty(message = "O campo TELEFONE é requerido")
 	private String telefone;
 
-	// @JsonIgnore
-	// @NotEmpty(message = "O campo SENHA é requerido")
+	@JsonIgnore
+	@NotEmpty(message = "O campo SENHA é requerido")
 	private String senha;
 
-	private Set<Integer> perfis = new HashSet<>();
+	// private Set<Integer> perfis = new HashSet<>();
 
-	public TecnicoDTO() {
+	public ClienteDTO() {
 		super();
 	}
 
-	public TecnicoDTO(Tecnico obj) {
+	public ClienteDTO(Cliente obj) {
 		super();
 		this.id = obj.getId();
 		this.nome = obj.getNome();
@@ -84,4 +88,13 @@ public class TecnicoDTO implements Serializable {
 		this.senha = senha;
 	}
 
+    /*
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+    */
 }
